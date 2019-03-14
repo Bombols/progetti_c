@@ -118,7 +118,7 @@ int Diagonale(char array[r][c], int rig, int col, char g){
         }
     }
     nd2--;
-    if (nd1 || nd2<4)
+    if (nd1<4 || nd2<4)
         return 1;
     return 0;
 }
