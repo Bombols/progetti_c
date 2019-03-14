@@ -70,7 +70,7 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     int nd2=0;
     int nr=rig;
     int nc=col;
-    while (nr<r || nc<c) {
+    while (nr<r && nc<c) {
         
         if(array[nr][nc]!=g)
             break;
@@ -82,7 +82,7 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     }
     nr=rig;
     nc=col;
-    while (nr>=0 || nc>=0) {
+    while (nr>=0 && nc>=0) {
        
         if(array[nr][nc]!=g)
             break;
@@ -95,7 +95,7 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     nd1--;
     nr=rig;
     nc=col;
-    while (nr>=0 || nc<c) {
+    while (nr>=0 && nc<c) {
        
         if(array[nr][nc]!=g)
             break;
@@ -107,7 +107,7 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     }
     nr=rig;
     nc=col;
-    while (nr<c || nc>=0) {
+    while (nr<c && nc>=0) {
        
         if(array[nr][nc]!=g)
             break;
