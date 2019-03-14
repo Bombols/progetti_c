@@ -14,6 +14,7 @@ int Inserimento (char array[r][c], int c, char p){
     printf("colonna piena\n");
     return 0;        
 }
+
 void stampa(char array[r][c]){
     for(int i=0 ; i<r; i++){
         for(int j=0; j<c; j++){
@@ -27,14 +28,6 @@ void stampa(char array[r][c]){
 
 int Colonna(char array[r][c], int rig, int col, char g){
     int nc=0;
-    for(int i=rig; i<r; i++){
-        if(array[i][col] != g)
-            break;
-        else
-        {
-            nc+=1;
-        }
-    }
     for(int i=rig; i>=0; i--){
         if(array[i][col]!=g)
             break;
@@ -62,8 +55,7 @@ int Riga(char array[r][c], int rig, int col, char g){
     for(int i=col; i>=0; i--){
         if(array[rig][i]!=g)
             break;
-        else
-        {
+        else{
             nr+=1;
         }
     }
@@ -77,41 +69,55 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     int nd1=0;
     int nd2=0;
     int nr=rig;
-    for(int i=col; i<c-1 || nr<rig-1; i++){
-        if(array[nr+1][i+1]!=g)
+    int nc=col;
+    while (nr<r || nc<c) {
+        nr+=1;
+        nc+=1;
+        if(array[nr][nc]!=g)
             break;
-        else{
-            nr++;
+        else {
             nd1+=1;
         }
     }
     nr=rig;
-    for(int i=col; i>0 || nr>0; i--){
-        if(array[nr-1][i-1]!=g)
+    nc=col;
+    while (nr>=0 || nc>=0) {
+        nr-=1;
+        nc-=1;
+        if(array[nr][nc]!=g)
             break;
-        else{
-            nr--;
+        else {
             nd1+=1;
         }
     }
+    nd1--;
+    if (nd1<4)
+        return 1;
+    
     nr=rig;
-    for(int i=col; i<c-1 || nr>0; i++){
-        if(array[nr-1][i+1]!=g)
+    nc=col;
+    while (nr>=0 || nc<c) {
+        nr-=1;
+        nc+=1;
+        if(array[nr][nc]!=g)
             break;
-        else{
-            nr--;
+        else {
             nd2+=1;
         }
     }
     nr=rig;
-    for(int i=col; i>0 || nr<rig-1; i--){
-        if(array[nr+1][i-1]!=g)
+    nc=col;
+    while (nr<c || nc>=0) {
+        nr+=1;
+        nc-=1;
+        if(array[nr][nc]!=g)
             break;
-        else{
+        else {
             nd2+=1;
         }
     }
-    if (nd1<4 || nd2<4)
+    nd2--;
+    if (nd2<4)
         return 1;
     return 0;
 }
@@ -136,7 +142,7 @@ int main(int argc, char** argv){
         else {
             int riga=Inserimento(forza, n, 'R');
             if(!Colonna(forza, riga, n, 'R')){
-                printf("Giocatore 1 hai vinto!");
+                printf("Giocatore 1 hai vinto!\n");
                 return 0;
             }
             if(!Riga(forza, riga, n, 'R')){
