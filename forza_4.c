@@ -71,53 +71,54 @@ int Diagonale(char array[r][c], int rig, int col, char g){
     int nr=rig;
     int nc=col;
     while (nr<r || nc<c) {
-        nr+=1;
-        nc+=1;
+        
         if(array[nr][nc]!=g)
             break;
         else {
+            nr+=1;
+            nc+=1;
             nd1+=1;
         }
     }
     nr=rig;
     nc=col;
     while (nr>=0 || nc>=0) {
-        nr-=1;
-        nc-=1;
+       
         if(array[nr][nc]!=g)
             break;
         else {
+            nr-=1;
+            nc-=1;
             nd1+=1;
         }
     }
     nd1--;
-    if (nd1<4)
-        return 1;
-    
     nr=rig;
     nc=col;
     while (nr>=0 || nc<c) {
-        nr-=1;
-        nc+=1;
+       
         if(array[nr][nc]!=g)
             break;
         else {
+            nr-=1;
+            nc+=1;
             nd2+=1;
         }
     }
     nr=rig;
     nc=col;
     while (nr<c || nc>=0) {
-        nr+=1;
-        nc-=1;
+       
         if(array[nr][nc]!=g)
             break;
         else {
+            nr+=1;
+            nc-=1;
             nd2+=1;
         }
     }
     nd2--;
-    if (nd2<4)
+    if (nd1 || nd2<4)
         return 1;
     return 0;
 }
